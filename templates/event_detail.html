@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ event.title }}</h1>
+
+<div class="event-card">
+    <p>{{ event.description }}</p>
+    <p><strong>Date:</strong> {{ event.date.strftime('%Y-%m-%d %H:%M') }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    <p><strong>Venue:</strong> {{ event.venue.name }} (Capacity: {{ event.venue.capacity }})</p>
+    <p><strong>Organizer:</strong> {{ event.organizer.name }}</p>
+</div>
+
+<h2>Book Tickets</h2>
+<form method="POST" action="{{ url_for('book_ticket', event_id=event.event_id) }}">
+    <div class="form-group">
+        <label for="ticket_type">Ticket Type:</label>
+        <select id="ticket_type" name="ticket_type" required>
+            <option value="Regular">Regular - $75.00</option>
+            <option value="VIP">VIP - $150.00</option>
+        </select>
+    </div>
+    <button type="submit" class="btn">Book Ticket</button>
+</form>
+
+{% if event.tickets %}
+    <h3>Booked Tickets: {{ event.tickets|length }}</h3>
+{% endif %}
+{% endblock %}

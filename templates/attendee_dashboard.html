@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Attendee Dashboard</h1>
+<p>Welcome, {{ user.name }}!</p>
+
+<h2>My Tickets</h2>
+{% if tickets %}
+    {% for ticket in tickets %}
+        <div class="event-card">
+            <h3>{{ ticket.event.title }}</h3>
+            <p><strong>Ticket Type:</strong> {{ ticket.ticket_type }}</p>
+            <p><strong>Price:</strong> ${{ ticket.price }}</p>
+            <p><strong>Event Date:</strong> {{ ticket.event.date.strftime('%Y-%m-%d %H:%M') }}</p>
+            <p><strong>Location:</strong> {{ ticket.event.location }}</p>
+            <p><strong>Status:</strong> {{ ticket.payment.status if ticket.payment else 'Pending' }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No tickets booked yet. <a href="{{ url_for('home') }}">Browse events</a> to book tickets!</p>
+{% endif %}
+{% endblock %}

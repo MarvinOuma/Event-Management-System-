@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+<p>Welcome, {{ user.name }}!</p>
+
+<div class="event-card">
+    <h3>System Overview</h3>
+    <p><strong>Total Users:</strong> {{ users|length }}</p>
+    <p><strong>Total Events:</strong> {{ events|length }}</p>
+</div>
+
+<h2>All Events</h2>
+{% for event in events.values() %}
+    <div class="event-card">
+        <h3>{{ event.title }}</h3>
+        <p>Organizer: {{ event.organizer.name }}</p>
+        <p>Date: {{ event.date.strftime('%Y-%m-%d %H:%M') }}</p>
+        <p>Tickets Sold: {{ event.tickets|length }}</p>
+    </div>
+{% endfor %}
+{% endblock %}

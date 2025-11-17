@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Manage Users</h1>
+
+<h2>All Users</h2>
+{% for user in users.values() %}
+    <div class="event-card">
+        <h3>{{ user.name }}</h3>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Role:</strong> {{ user.role }}</p>
+        <p><strong>Events Created:</strong> {{ user.events|length }}</p>
+        <p><strong>Tickets Booked:</strong> {{ user.tickets|length }}</p>
+    </div>
+{% endfor %}
+{% endblock %}
