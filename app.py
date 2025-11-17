@@ -5,7 +5,7 @@ from models import User, Venue, Event, Ticket, Payment, Feedback
 app = Flask(__name__)
 app.secret_key = 'your-secret-key'
 
-# In-memory storage (replace with database in production)
+# In-memory storage (I will replace with database in production)
 users = {
     1: User(1, "Admin User", "admin@example.com", "admin123", "Admin"),
     2: User(2, "John Organizer", "organizer@example.com", "org123", "Organizer"),
